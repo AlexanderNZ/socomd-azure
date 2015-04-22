@@ -747,3 +747,8 @@ textarea {
 .flex-caption p {
     margin: 0 0 15px;
 }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
