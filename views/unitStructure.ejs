@@ -166,7 +166,7 @@
                             .append("g")
                             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-                    d3.json("D:\home\site\wwwroot\public\js/treeData.json", function (error, treeData) {
+                    d3.json("js/treeData.json", function (error, treeData) {
                         root = treeData[0];
                         root.x0 = 0;
                         root.y0 = 0;
