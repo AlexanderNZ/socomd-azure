@@ -26,7 +26,7 @@ router.get('/recruitment', function(req, res, next) {
   res.render('recruitment', { title: 'Express' });
 });
 
-router.get('/unitStructure', function(req, res, next) {
+router.get('/unitStructure.ejs', function(req, res, next) {
   res.render('unitStructure', { title: 'Express' });
 });
 
