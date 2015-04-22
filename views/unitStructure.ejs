@@ -34,15 +34,15 @@
     <meta name="description" content=""/>
     <meta name="author" content="Alex Corkin: www.4lex.nz"/>
     <!-- css -->
-    <link href="css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-    <link href="css/jcarousel.css" rel="stylesheet"/>
-    <link href="css/flexslider.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/public/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="/public/css/jcarousel.css" rel="stylesheet"/>
+    <link href="/public/css/flexslider.css" rel="stylesheet"/>
+    <link href="/public/css/style.css" rel="stylesheet"/>
 
 
     <!-- Theme skin -->
-    <link href="skins/default.css" rel="stylesheet"/>
+    <link href="/public/skins/default.css" rel="stylesheet"/>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -167,7 +167,7 @@
                             .append("g")
                             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-                    d3.json("js/treeData.json", function (error, treeData) {
+                    d3.json("/public/js/treeData.json", function (error, treeData) {
                         root = treeData[0];
                         root.x0 = 0;
                         root.y0 = 0;
