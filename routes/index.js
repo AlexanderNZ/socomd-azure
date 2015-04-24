@@ -30,8 +30,4 @@ router.get('/unitStructure', function (req, res, next) {
     res.render('unitStructure', {title: 'Express'});
 });
 
-router.get('/circles', function (req, res, next) {
-    res.render('circles', {title: 'Express'});
-});
-
 module.exports = router;
