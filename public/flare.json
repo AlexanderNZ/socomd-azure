@@ -1,0 +1,44 @@
+{
+  "name": "flare",
+  "children": [
+    {
+      "name": "Basic Training",
+      "children": [
+            {"name": "Basic Service Knowledge", "size": 800},
+            {"name": "Individual Combat Proficiencies", "size": 7000},
+            {"name": "Combat Medic Training", "size": 5000},
+            {"name": "Conventional Section Fighting", "size": 7000},
+            {"name": "Section Urban Operations Fighting", "size": 6000},
+            {"name": "Basic Vehicle Training", "size": 1000},
+            {"name": "Basic Airborne Training", "size": 1000},
+            {"name": "Basic Diver Training", "size": 1000}
+          ]
+        },
+    {
+      "name": "Basic Training",
+      "children": [
+        {"name": "Basic Service Knowledge", "size": 800},
+        {"name": "Individual Combat Proficiencies", "size": 7000},
+        {"name": "Combat Medic Training", "size": 5000},
+        {"name": "Conventional Section Fighting", "size": 7000},
+        {"name": "Section Urban Operations Fighting", "size": 6000},
+        {"name": "Basic Vehicle Training", "size": 1000},
+        {"name": "Basic Airborne Training", "size": 1000},
+        {"name": "Basic Diver Training", "size": 1000}
+      ]
+    },
+    {
+      "name": "Basic Training",
+      "children": [
+        {"name": "Basic Service Knowledge", "size": 800},
+        {"name": "Individual Combat Proficiencies", "size": 7000},
+        {"name": "Combat Medic Training", "size": 5000},
+        {"name": "Conventional Section Fighting", "size": 7000},
+        {"name": "Section Urban Operations Fighting", "size": 6000},
+        {"name": "Basic Vehicle Training", "size": 1000},
+        {"name": "Basic Airborne Training", "size": 1000},
+        {"name": "Basic Diver Training", "size": 1000}
+      ]
+    }
+  ]
+}
