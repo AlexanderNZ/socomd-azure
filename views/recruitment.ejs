@@ -12,25 +12,6 @@
     <link href="css/flexslider.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 
-    <style>
-        circle {
-            fill: rgb(31, 119, 180);
-            fill-opacity: .25;
-            stroke: rgb(31, 119, 180);
-            stroke-width: 1px;
-        }
-
-        .leaf circle {
-            fill: #ff7f0e;
-            fill-opacity: 1;
-        }
-
-        text {
-            font: 10px sans-serif;
-        }
-    </style>
-
-
     <!-- Theme skin -->
     <link href="skins/default.css" rel="stylesheet"/>
 
@@ -317,6 +298,45 @@
         </div>
         <div class="col-sm-2 col-md-2"></div>
     </div>
+
+    <div class="col-md-4"></div>
+    <div class="section col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="InputEmail1">Email address:</label>
+                <input type="email" class="form-control" id="InputEmail1" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="tsName">Team Speak Name:</label>
+                <input type="text" class="form-control" id="tsName" placeholder="Team Speak Name">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="ageCheck"> I'm older than 18.
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="micCheck"> I have a working microphone.
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="confirmCheck"> I've read the recruitment page and still want to join!
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="skills">(Optionally) Do you want to help SOCOMD with anything technical?</label>
+                <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="you">If you have anything else you want to say, let us know here.</label>
+                <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default" id="submit">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
 </div>
 
 <footer id="footer">
@@ -327,6 +347,7 @@
 <!-- javascript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+
 <script src="js/jquery.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
