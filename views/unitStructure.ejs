@@ -6,10 +6,6 @@
 
     <style>
 
-        .node {
-            cursor: pointer;
-        }
-
         .node circle {
             fill: #fff;
             stroke: steelblue;
@@ -84,16 +80,14 @@
                             <ul class="dropdown-menu">
                                 <li><a href="unitStructure">Structure Overview</a></li>
                                 <li class="divider"></li>
-                                <li><a href="unitStructure">SOCOMD HQ</a></li>
-                                <li><a href="unitStructure">J1: Administration</a></li>
-                                <li><a href="unitStructure">J2: Intelligence</a></li>
-                                <li><a href="unitStructure">J3: Operations</a></li>
-                                <li><a href="unitStructure">J4: Logistics</a></li>
+                                <li><a href="unitStructure#HQ-Tree">SOCOMD HQ</a></li>
+                                <li><a href="unitStructure#HQ-Tree">J1: Administration</a></li>
+                                <li><a href="unitStructure#HQ-Tree">J2: Intelligence</a></li>
+                                <li><a href="unitStructure#HQ-Tree">J3: Operations</a></li>
+                                <li><a href="unitStructure#HQ-Tree">J4: Logistics</a></li>
                                 <li class="divider"></li>
-                                <li><a href="unitStructure">2nd Commando Regiment</a></li>
-                                <li><a href="unitStructure">171st Aviation Regiment</a></li>
-                                <li class="divider"></li>
-                                <li><a href="unitStructure">Awards and Recognition</a></li>
+                                <li><a href="unitStructure#CDO-Tree">2nd Commando Regiment</a></li>
+                                <li><a href="unitStructure#AirTree">171st Aviation Regiment</a></li>
                             </ul>
                         </li>
 
@@ -101,14 +95,13 @@
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
                                data-delay="0" data-close-others="false">Recruitment <b class=" icon-angle-down"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="recruitment">Application Form</a></li>
-                                <li><a href="recruitment">Successful Applicatants </a></li>
-                                <li><a href="recruitment">Probation and Behaviour</a></li>
-                                <li><a href="recruitment">Reserves Regiment Policy</a></li>
-                                <li><a href="recruitment">Contact Us</a></li>
+                                <li><a href="recruitment#joining">Joining the Unit</a></li>
+                                <li><a href="recruitment#success">Successful Applicants</a></li>
+                                <li><a href="recruitment#probation">Probation and Behaviour</a></li>
+                                <li><a href="recruitment#form">Application Form</a></li>
                             </ul>
                         </li>
-                        <li><a href="portfolio">Media</a></li>
+                        <li><a href="media">Media</a></li>
                         <li><a href="blog">Blog</a></li>
                     </ul>
                 </div>
@@ -138,9 +131,9 @@
             <div>
                 <h2 class="text-center">Command Appointments</h2>
 
-                <div id="HQ-Tree"><h3 class="text-center">SOCOMD HQ</h3></div>
-                <div id="CDO-Tree"><h3 class="text-center">2 CDO HQ</h3></div>
-                <div id="AirTree"><h3 class="text-center">171 SQN</h3></div>
+                <div id="HQ-Tree"><h3 class="text-center section">SOCOMD HQ</h3></div>
+                <div id="CDO-Tree"><h3 class="text-center section">2 CDO HQ</h3></div>
+                <div id="AirTree"><h3 class="text-center section">171 SQN</h3></div>
 
                 <script>
 
@@ -1239,12 +1232,9 @@
                 </script>
 
             </div>
-            <h3 class="text-center">Who are We?</h3>
-
         </div>
         <div class="col-sm-2 col-md-2"></div>
     </div>
-
 </div>
 
 <script src="js/jquery.js"></script>
