@@ -1,0 +1,1101 @@
+<div id="HQ-Tree"><h3 class="text-center section">SOCOMD HQ</h3></div>
+<div id="CDO-Tree"><h3 class="text-center section">2 CDO HQ</h3></div>
+<div id="AirTree"><h3 class="text-center section">171 SQN</h3></div>
+
+<script>
+
+    var HQTree = [
+        {
+            "name": "CO: BRIG Freeo",
+            "parent": "null",
+            "children": [
+                {
+                    "name": "SOCOMD HQ",
+                    "parent": "CO: BRIG Freeo",
+                    "children": [
+                        {
+                            "name": "J1",
+                            "parent": "XO: COL Watudube",
+                            "children": [
+                                {
+                                    "name": "J1 SSO: CAPT Shorty",
+                                    "parent": "J1",
+                                    "children": [
+                                        {
+                                            "name": "DSO: Vacant",
+                                            "parent": "J1 SSO: CAPT Shorty",
+                                            "children": [
+                                                {
+                                                    "name": "J1 Staff: Vacant",
+                                                    "parent": "DSO: Vacant"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "J2",
+                            "parent": "XO: COL Watudube",
+                            "children": [
+                                {
+                                    "name": "J2 SSO: COL Watudube",
+                                    "parent": "J2",
+                                    "children": [
+                                        {
+                                            "name": "DSO: Vacant",
+                                            "parent": "J2 SSO: COL Watudube",
+                                            "children": [
+                                                {
+                                                    "name": "J2 Staff: Vacant",
+                                                    "parent": "DSO: Vacant"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "J3",
+                            "parent": "XO: COL Watudube",
+                            "children": [
+                                {
+                                    "name": "J3 SSO: COL Watudube",
+                                    "parent": "J3",
+                                    "children": [
+                                        {
+                                            "name": "DSO: Vacant",
+                                            "parent": "J3 SSO: COL Watudube",
+                                            "children": [
+                                                {
+                                                    "name": "J3 Staff: Vacant",
+                                                    "parent": "DSO: Vacant"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "J4",
+                            "parent": "XO: COL Watudube",
+                            "children": [
+                                {
+                                    "name": "J4 SSO: CAPT Red Horizon",
+                                    "parent": "J4",
+                                    "children": [
+                                        {
+                                            "name": "DSO: LT Chain",
+                                            "parent": "J4 SSO: CAPT Red Horizon",
+                                            "children": [
+                                                {
+                                                    "name": "J4 Staff: SGT Seth",
+                                                    "parent": "DSO: LT Chain"
+                                                },
+                                                {
+                                                    "name": "J4 Staff: CPL Btodan",
+                                                    "parent": "DSO: LT Chain"
+                                                },
+                                                {
+                                                    "name": "J4 Staff: LCPL HAIL",
+                                                    "parent": "DSO: LT Chain"
+                                                },
+                                                {
+                                                    "name": "J4 Staff: LCPL Alex",
+                                                    "parent": "DSO: LT Chain"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "XO: COL Watudube",
+                    "parent": "CO: BRIG Freeo",
+                    "children": []
+                }
+            ]
+        }
+    ];
+
+    // ************** Generate the tree diagram	 *****************
+    var margin = {top: 30, right: 20, bottom: 30, left: 0},
+            width = 1500 - margin.left - margin.right,
+            height = 1500 - margin.top - margin.bottom;
+
+    var i = 0,
+            duration = 750,
+            root;
+
+    var tree = d3.layout.tree()
+            .size([height, width]);
+
+    var diagonal = d3.svg.diagonal()
+            .projection(function (d) {
+                return [d.x, d.y];
+            });
+
+    var svg = d3.select("#HQ-Tree").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    root = HQTree[0];
+    root.x0 = 0;
+    root.y0 = 0;
+    update(root);
+
+
+
+    update(root);
+
+    d3.select(self.frameElement).style("height", "500px");
+
+    function update(source) {
+
+        // Compute the new tree layout.
+        var nodes = tree.nodes(root).reverse(),
+                links = tree.links(nodes);
+
+        // Normalize for fixed-depth.
+        nodes.forEach(function (d) {
+            d.y = d.depth * 100;
+        });
+
+        // Update the nodes…
+        var node = svg.selectAll("g.node")
+                .data(nodes, function (d) {
+                    return d.id || (d.id = ++i);
+                });
+
+        // Enter any new nodes at the parent's previous position.
+        var nodeEnter = node.enter().append("g")
+                .attr("class", "node")
+                .attr("transform", function (d) {
+                    return "translate(" + source.x0 + "," + source.y0 + ")";
+                })
+                .on("click", click);
+
+        nodeEnter.append("circle")
+                .attr("r", 1e-6)
+                .style("fill", function (d) {
+                    return d._children ? "lightsteelblue" : "#fff";
+                });
+
+        nodeEnter.append("text")
+                .attr("y", function (d) {
+                    return d.children || d._children ? -18 : 18;
+                })
+                .attr("dy", ".35em")
+                .attr("text-anchor", "middle")
+                .text(function (d) {
+                    return d.name;
+                })
+                .style("fill-opacity", 1);
+
+        // Transition nodes to their new position.
+        var nodeUpdate = node.transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
+
+        nodeUpdate.select("circle")
+                .attr("r", 10)
+                .style("fill", function (d) {
+                    return d._children ? "lightsteelblue" : "#fff";
+                });
+
+        nodeUpdate.select("text")
+                .style("fill-opacity", 1);
+
+        // Transition exiting nodes to the parent's new position.
+        var nodeExit = node.exit().transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + source.x + "," + source.y + ")";
+                })
+                .remove();
+
+        nodeExit.select("circle")
+                .attr("r", 1e-6);
+
+        nodeExit.select("text")
+                .style("fill-opacity", 1e-6);
+
+        // Update the links…
+        var link = svg.selectAll("path.link")
+                .data(links, function (d) {
+                    return d.target.id;
+                });
+
+        // Enter any new links at the parent's previous position.
+        link.enter().insert("path", "g")
+                .attr("class", "link")
+                .attr("d", function (d) {
+                    var o = {x: source.x0, y: source.y0};
+                    return diagonal({source: o, target: o});
+                });
+
+        // Transition links to their new position.
+        link.transition()
+                .duration(duration)
+                .attr("d", diagonal);
+
+        // Transition exiting nodes to the parent's new position.
+        link.exit().transition()
+                .duration(duration)
+                .attr("d", function (d) {
+                    var o = {x: source.x, y: source.y};
+                    return diagonal({source: o, target: o});
+                })
+                .remove();
+
+        // Stash the old positions for transition.
+        nodes.forEach(function (d) {
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
+    }
+
+    // Toggle children on click.
+    function click(d) {
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        } else {
+            d.children = d._children;
+            d._children = null;
+        }
+        update(d);
+    }
+</script>
+
+<script>
+    var CDOTree = [
+        {
+            "name": "CO: BRIG Freeo",
+            "parent": "null",
+            "children": [
+                {
+                    "name": "2 CDO",
+                    "parent": "CO: BRIG Freeo",
+                    "children": [
+                        {
+                            "name": "2 CDO HQ",
+                            "parent": "2 CDO",
+                            "children": [
+                                {
+                                    "name": "2CDO CO",
+                                    "parent": "2 CDO HQ",
+                                    "children": [
+                                        {
+                                            "name": "2 CDO XO",
+                                            "parent": "2CDO CO"
+                                        },
+                                        {
+                                            "name": "2 CDO RSM",
+                                            "parent": "2CDO CO"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "A COY",
+                            "parent": "XO: COL Watudube",
+                            "children": [
+                                {
+                                    "name": "1 PL",
+                                    "parent": "A COY",
+                                    "children": [
+                                        {
+                                            "name": "1 PL HQ",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "1 PLT COMD",
+                                                    "parent": "1 PL HQ",
+                                                    "children": [
+                                                        {
+                                                            "name": "1 PLT SGT",
+                                                            "parent": "1 PLT COMD"
+                                                        },
+                                                        {
+                                                            "name": "PL SIG",
+                                                            "parent": "1 PLT COMD"
+                                                        },
+                                                        {
+                                                            "name": "PL MEDIC",
+                                                            "parent": "1 PLT COMD"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "1 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "1 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "2 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "2 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "3 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "3 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "2 PL",
+                                    "parent": "A COY",
+                                    "children": [
+                                        {
+                                            "name": "2 PL HQ",
+                                            "parent": "2 PL",
+                                            "children": [
+                                                {
+                                                    "name": "J2 Staff: Vacant",
+                                                    "parent": "DSO: Vacant"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "1 SEC",
+                                            "parent": "2 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "1 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "2 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "2 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "3 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "3 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "3 PL",
+                                    "parent": "A COY",
+                                    "children": [
+                                        {
+                                            "name": "3 PL HQ",
+                                            "parent": "3 PL",
+                                            "children": [
+                                                {
+                                                    "name": "J2 Staff: Vacant",
+                                                    "parent": "DSO: Vacant"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "1 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "1 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "2 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "2 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "3 SEC",
+                                            "parent": "1 PL",
+                                            "children": [
+                                                {
+                                                    "name": "SEC COMD",
+                                                    "parent": "3 SEC",
+                                                    "children": [
+                                                        {
+                                                            "name": "SEC 2IC",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "SAPPER",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "LIGHT AT MKSMN",
+                                                            "parent": "SEC COMD"
+                                                        },
+                                                        {
+                                                            "name": "Medic",
+                                                            "parent": "AUTO RFN"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "SPT SEC",
+                                    "parent": "A COY",
+                                    "children": [
+                                        {
+                                            "name": "SPT SEC COMD",
+                                            "parent": "SPT SEC",
+                                            "children": [
+                                                {
+                                                    "name": "HVY WPN SPEC",
+                                                    "parent": "SPT SEC COMD"
+                                                },
+                                                {
+                                                    "name": "HVY WPN ASST",
+                                                    "parent": "SPT SEC COMD"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "RECON SEC",
+                                    "parent": "A COY",
+                                    "children": [
+                                        {
+                                            "name": "OBSERVER",
+                                            "parent": "RECON SEC",
+                                            "children": [
+                                                {
+                                                    "name": "SNIPER",
+                                                    "parent": "OBSERVER"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "XO: COL Watudube",
+                    "parent": "CO: BRIG Freeo",
+                }
+            ]
+        }
+    ];
+
+    // ************** Generate the tree diagram	 *****************
+    var margin = {top: 30, right: 20, bottom: 30, left: 0},
+            width = 1500 - margin.left - margin.right,
+            height = 1500 - margin.top - margin.bottom;
+
+    var i = 0,
+            duration = 750,
+            root;
+
+    var tree = d3.layout.tree()
+            .size([height, width]);
+
+    var diagonal = d3.svg.diagonal()
+            .projection(function (d) {
+                return [d.x, d.y];
+            });
+
+    var svg = d3.select("#CDO-Tree").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    root = CDOTree[0];
+    root.x0 = 0;
+    root.y0 = 0;
+    update(root);
+
+
+
+    update(root);
+
+    d3.select(self.frameElement).style("height", "500px");
+
+    function update(source) {
+
+        // Compute the new tree layout.
+        var nodes = tree.nodes(root).reverse(),
+                links = tree.links(nodes);
+
+        // Normalize for fixed-depth.
+        nodes.forEach(function (d) {
+            d.y = d.depth * 100;
+        });
+
+        // Update the nodes…
+        var node = svg.selectAll("g.node")
+                .data(nodes, function (d) {
+                    return d.id || (d.id = ++i);
+                });
+
+        // Enter any new nodes at the parent's previous position.
+        var nodeEnter = node.enter().append("g")
+                .attr("class", "node")
+                .attr("transform", function (d) {
+                    return "translate(" + source.x0 + "," + source.y0 + ")";
+                })
+                .on("click", click);
+
+        nodeEnter.append("circle")
+                .attr("r", 1e-6)
+                .style("fill", function (d) {
+                    return d._children ? "lightsteelblue" : "#fff";
+                });
+
+        nodeEnter.append("text")
+                .attr("y", function (d) {
+                    return d.children || d._children ? -18 : 18;
+                })
+                .attr("dy", ".35em")
+                .attr("text-anchor", "middle")
+                .text(function (d) {
+                    return d.name;
+                })
+                .style("fill-opacity", 1);
+
+        // Transition nodes to their new position.
+        var nodeUpdate = node.transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
+
+        nodeUpdate.select("circle")
+                .attr("r", 10)
+                .style("fill", function (d) {
+                    return d._children ? "lightsteelblue" : "#fff";
+                });
+
+        nodeUpdate.select("text")
+                .style("fill-opacity", 1);
+
+        // Transition exiting nodes to the parent's new position.
+        var nodeExit = node.exit().transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + source.x + "," + source.y + ")";
+                })
+                .remove();
+
+        nodeExit.select("circle")
+                .attr("r", 1e-6);
+
+        nodeExit.select("text")
+                .style("fill-opacity", 1e-6);
+
+        // Update the links…
+        var link = svg.selectAll("path.link")
+                .data(links, function (d) {
+                    return d.target.id;
+                });
+
+        // Enter any new links at the parent's previous position.
+        link.enter().insert("path", "g")
+                .attr("class", "link")
+                .attr("d", function (d) {
+                    var o = {x: source.x0, y: source.y0};
+                    return diagonal({source: o, target: o});
+                });
+
+        // Transition links to their new position.
+        link.transition()
+                .duration(duration)
+                .attr("d", diagonal);
+
+        // Transition exiting nodes to the parent's new position.
+        link.exit().transition()
+                .duration(duration)
+                .attr("d", function (d) {
+                    var o = {x: source.x, y: source.y};
+                    return diagonal({source: o, target: o});
+                })
+                .remove();
+
+        // Stash the old positions for transition.
+        nodes.forEach(function (d) {
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
+    }
+
+    // Toggle children on click.
+    function click(d) {
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        } else {
+            d.children = d._children;
+            d._children = null;
+        }
+        update(d);
+    }
+</script>
+
+<script>
+
+    var AirTree = [
+        {
+            "name": "CO: BRIG Freeo",
+            "parent": "null",
+            "children": [
+                {
+                    "name": "171 SQN",
+                    "parent": "CO: BRIG Freeo",
+                    "children": [
+                        {
+                            "name": "SQN HQ",
+                            "parent": "171 SQN",
+                            "children": [
+                                {
+                                    "name": "RW SQN CO",
+                                    "parent": "SQN HQ"
+                                },
+                                {
+                                    "name": "RW SQN XO",
+                                    "parent": "SQN HQ"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "1 FLT",
+                            "parent": "171 SQN",
+                            "children": [
+                                {
+                                    "name": "MH-9 HUMMINGBIRD",
+                                    "parent": "171 SQN"
+                                },
+                                {
+                                    "name": "AH-9 PAWNEE",
+                                    "parent": "171 SQN"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "2 FLT",
+                            "parent": "171 SQN",
+                            "children": [
+                                {
+                                    "name": "UH-60M BLACKHAWK",
+                                    "parent": "171 SQN"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "3 FLT",
+                            "parent": "171 SQN",
+                            "children": [
+                                {
+                                    "name": "CH47F CHINOOK",
+                                    "parent": "171 SQN"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "4 FLT",
+                            "parent": "171 SQN",
+                            "children": [
+                                {
+                                    "name": "AH64 APACHE",
+                                    "parent": "171 SQN"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "XO: COL Watudube",
+                    "parent": "CO: BRIG Freeo",
+                    "children": []
+                }
+            ]
+        }
+    ];
+
+    // ************** Generate the tree diagram	 *****************
+    var margin = {top: 30, right: 20, bottom: 30, left: 0},
+            width = 1500 - margin.left - margin.right,
+            height = 1500 - margin.top - margin.bottom;
+
+    var i = 0,
+            duration = 750,
+            root;
+
+    var tree = d3.layout.tree()
+            .size([height, width]);
+
+    var diagonal = d3.svg.diagonal()
+            .projection(function (d) {
+                return [d.x, d.y];
+            });
+
+    var svg = d3.select("#AirTree").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    root = AirTree[0];
+    root.x0 = 0;
+    root.y0 = 0;
+    update(root);
+
+
+
+    update(root);
+
+    d3.select(self.frameElement).style("height", "500px");
+
+    function update(source) {
+
+        // Compute the new tree layout.
+        var nodes = tree.nodes(root).reverse(),
+                links = tree.links(nodes);
+
+        // Normalize for fixed-depth.
+        nodes.forEach(function (d) {
+            d.y = d.depth * 100;
+        });
+
+        // Update the nodes…
+        var node = svg.selectAll("g.node")
+                .data(nodes, function (d) {
+                    return d.id || (d.id = ++i);
+                });
+
+        // Enter any new nodes at the parent's previous position.
+        var nodeEnter = node.enter().append("g")
+                .attr("class", "node")
+                .attr("transform", function (d) {
+                    return "translate(" + source.x0 + "," + source.y0 + ")";
+                })
+                .on("click", click);
+
+        nodeEnter.append("circle")
+                .attr("r", 1e-6)
+                .style("fill", function (d) {
+                    return d._children ? "lightsteelblue" : "#fff";
+                });
+
+        nodeEnter.append("text")
+                .attr("y", function (d) {
+                    return d.children || d._children ? -18 : 18;
+                })
+                .attr("dy", ".35em")
+                .attr("text-anchor", "middle")
+                .text(function (d) {
+                    return d.name;
+                })
+                .style("fill-opacity", 1);
+
+        // Transition nodes to their new position.
+        var nodeUpdate = node.transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
+
+        nodeUpdate.select("circle")
+                .attr("r", 10)
+                .style("fill", function (d) {
+                    return d._children ? "lightsteelblue" : "#fff";
+                });
+
+        nodeUpdate.select("text")
+                .style("fill-opacity", 1);
+
+        // Transition exiting nodes to the parent's new position.
+        var nodeExit = node.exit().transition()
+                .duration(duration)
+                .attr("transform", function (d) {
+                    return "translate(" + source.x + "," + source.y + ")";
+                })
+                .remove();
+
+        nodeExit.select("circle")
+                .attr("r", 1e-6);
+
+        nodeExit.select("text")
+                .style("fill-opacity", 1e-6);
+
+        // Update the links…
+        var link = svg.selectAll("path.link")
+                .data(links, function (d) {
+                    return d.target.id;
+                });
+
+        // Enter any new links at the parent's previous position.
+        link.enter().insert("path", "g")
+                .attr("class", "link")
+                .attr("d", function (d) {
+                    var o = {x: source.x0, y: source.y0};
+                    return diagonal({source: o, target: o});
+                });
+
+        // Transition links to their new position.
+        link.transition()
+                .duration(duration)
+                .attr("d", diagonal);
+
+        // Transition exiting nodes to the parent's new position.
+        link.exit().transition()
+                .duration(duration)
+                .attr("d", function (d) {
+                    var o = {x: source.x, y: source.y};
+                    return diagonal({source: o, target: o});
+                })
+                .remove();
+
+        // Stash the old positions for transition.
+        nodes.forEach(function (d) {
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
+    }
+
+    // Toggle children on click.
+    function click(d) {
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        } else {
+            d.children = d._children;
+            d._children = null;
+        }
+        update(d);
+    }
+</script>
+
+</div>
