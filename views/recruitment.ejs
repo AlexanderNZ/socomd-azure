@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>SOCOMD || Recruitment</title>
@@ -299,7 +299,7 @@
     <div class="col-md-4"></div>
     <div class="section col-md-4">
         <h2 class="text-center">Application Form</h2>
-        <form id="form">
+        <form id="form" action="">
             <div class="form-group">
                 <label for="InputEmail1">Email address:</label>
                 <input type="email" class="form-control" id="InputEmail1" placeholder="Enter email">
@@ -310,17 +310,17 @@
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="ageCheck"> I'm older than 18.
+                    <input class="cbox" type="checkbox" id="ageCheck" value="1"> I'm older than 18.
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="micCheck"> I have a working microphone.
+                    <input class="cbox" type="checkbox" id="micCheck" value="2"> I have a working microphone.
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="confirmCheck"> I've read the recruitment page and still want to join!
+                    <input class="cbox" type="checkbox" id="confirmCheck" value="3"> I've read the recruitment page and still want to join!
                 </label>
             </div>
             <div class="form-group">
@@ -331,7 +331,8 @@
                 <label for="you">If you have anything else you want to say, let us know here.</label>
                 <textarea class="form-control" rows="4"></textarea>
             </div>
-            <button type="submit" class="btn btn-default" id="submit">Submit</button>
+            <!--<button type="submit" class="btn btn-default" id="submit">Submit</button>-->
+            <input type="submit" value="Submit" id="bt_submit" />
         </form>
     </div>
     <div class="col-md-4"></div>

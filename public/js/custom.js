@@ -135,3 +135,68 @@ jQuery(document).ready(function ($) {
     });
 
 });
+
+function postSignupToGoogle(){
+    var captnName = jQuery('#team-captain').val();
+    var captnEmail = jQuery('#team-captain-contact-email').val();
+    var game = jQuery('#game').val();
+    if ((captnName !== "") && (captnEmail !== "") && ((game !== ""))) {
+        jQuery.ajax({
+            url: "google forms url",
+            // data entry,####### below variables can be found on the form, view live form, right click on name,
+            // input type = text blah ... name=entry.###
+            data: {"entry.538124189" : captnName, "entry.1389879279" : captnEmail, "entry.1902684715": game},
+            type: "POST",
+            dataType: "xml",
+            statusCode: {
+                0: function (){
+
+                    jQuery('#team-captain').val();
+                    jQuery('#team-captain-contact-email').val();
+                    jQuery('#game').val();
+                    alert("Thank you for signing up!");
+                },
+                200: function (){
+                    jQuery('#team-captain').val();
+                    jQuery('#team-captain-contact-email').val();
+                    jQuery('#game').val();
+                    alert("Thank you for signing up!");
+                }
+            }
+        });
+    }
+    else {
+        alert("An Error has occurred, please try again later");
+    }
+}
+function postContactUsToGoogle(){
+    var contactName = jQuery('#name2').val();
+    var contactEmail = jQuery('#email2').val();
+    var contactMessage = jQuery('#message2').val();
+    if ((contactName !== "") && (contactEmail !== "") && ((contactMessage !== ""))) {
+        jQuery.ajax({
+            url: "https://docs.google.com/forms/d/10kmFUCg5-1oTW56DN75r91r5BufSN0ZtbIBDgrRjDFk/formResponse",
+            data: {"entry.1255039815" : contactName, "entry.832313077" : contactEmail, "entry.954156112": contactMessage},
+            type: "POST",
+            dataType: "xml",
+            statusCode: {
+                0: function () {
+
+                    jQuery('#name2').val();
+                    jQuery('#email2').val();
+                    jQuery('#message2').val();
+                    alert("Thank you for contacting us \n We will reply shortly!");
+                },
+                200: function () {
+                    jQuery('#name2').val();
+                    jQuery('#email2').val();
+                    jQuery('#message2').val();
+                    alert("Thank you for contacting us \n We will reply shortly!");
+                }
+            }
+        });
+    }
+    else {
+        alert("An Error has occurred, please try again later");
+    }
+}
