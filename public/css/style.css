@@ -11,10 +11,12 @@ body {
     height: 100%;
 }
 body {
+    background-image: url("/img/camouflage.png");
+    background-repeat: repeat-y;
+	background-color: #000000;
     font-size: 15px;
     line-height: 1.50;
-    color: #333333;
-    background-color: #ffffff;
+    color: #ffffff;
     position: relative;
 }
 h1,
@@ -23,7 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #333333;
+    color: #ffffff;
 }
 h1 {
     font-size: 38px;
@@ -56,10 +58,10 @@ h4 span {
     color: #339BEB;
 }
 .text-colored {
-    color: #55acee;
+    color: #00ff00;
 }
 a {
-    color: #55acee;
+    color: #00ff00;
 }
 a:hover {
     color: #339BEB;
@@ -150,7 +152,6 @@ blockquote {
     padding: 40px 0;
 }
 .section {
-    background-color: #ffffff;
     padding: 80px 0;
 }
 
@@ -161,10 +162,10 @@ blockquote {
     color: #ffffff;
 }
 .default-bg.blue {
-    background-color: #55acee;
+    background-color: #00ff00;
 }
 .translucent-bg {
-    color: #ffffff;
+    color: #cacaca;
 }
 .default-bg h1,
 .default-bg h2,
@@ -379,14 +380,14 @@ blockquote {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus,
 .nav-pills > li > a:hover {
-    background-color: #55acee;
-    border-color: #55acee;
+    background-color: #00ff00;
+    border-color: #00ff00;
     color: #ffffff;
 }
 .nav-pills > li > a {
     border-radius: 0;
     padding: 8px 20px;
-    border: 1px solid #cacaca;
+    border: 1px solid #c7c7c7;
     color: #666666;
     font-size: 12px;
     text-transform: uppercase;
@@ -419,7 +420,7 @@ textarea {
     border-radius: 0px;
 }
 .modal-header {
-    background-color: #55acee;
+    background-color: #00ff00;
     color: #ffffff;
 }
 .modal-header h4 {

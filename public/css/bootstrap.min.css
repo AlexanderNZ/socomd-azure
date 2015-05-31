@@ -293,6 +293,10 @@ body {
     background-color: #fff
 }
 
+ ul li:hover ul{
+    display: block; /* display the dropdown */
+}
+
 input, button, select, textarea {
     font-family: inherit;
     font-size: inherit;
@@ -300,7 +304,7 @@ input, button, select, textarea {
 }
 
 a {
-    color: #428bca;
+    color: #00ff00;
     text-decoration: none
 }
 
@@ -3268,12 +3272,12 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
     z-index: 1000;
     display: none;
     float: left;
-    min-width: 160px;
+    min-width: 220px;
     padding: 5px 0;
     margin: 2px 0 0;
     list-style: none;
     font-size: 14px;
-    background-color: #fff;
+    background-color: #000000;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, .15);
     border-radius: 4px;
@@ -3300,7 +3304,7 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
     clear: both;
     font-weight: 400;
     line-height: 1.428571429;
-    color: #333;
+    color: #339933; //text drop down colour
     white-space: nowrap
 }
 
@@ -3746,7 +3750,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
-    background-color: #eee
+    background-color: #c7c7c7
 }
 
 .nav > li.disabled > a {
@@ -3761,7 +3765,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background-color: #eee;
+    background-color: #c7c7c7;
     border-color: #428bca
 }
 
@@ -3929,7 +3933,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
     }
 
     .nav-tabs-justified > .active > a, .nav-tabs-justified > .active > a:hover, .nav-tabs-justified > .active > a:focus {
-        border-bottom-color: #fff
+        border-bottom-color: #c7c7c7
     }
 }
 
