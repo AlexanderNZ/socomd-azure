@@ -2210,14 +2210,14 @@ textarea.input-lg, select[multiple].input-lg {
 
 .btn-primary {
     color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd
+    background-color: #339933;
+    border-color: #000000
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #3276b1;
-    border-color: #285e8e
+    background-color: #c7c7c7;
+    border-color: #000000
 }
 
 .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
